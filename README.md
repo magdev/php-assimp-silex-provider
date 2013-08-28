@@ -14,6 +14,8 @@ Add it using [composer](http://getcomposer.org/) :
 
 ##Usage
 
+Registering the provider
+
 ```php
 use Silex\Application;
 use Assimp\Silex\Provider\AssimpServiceProvider;
@@ -22,7 +24,16 @@ $app = new Application();
 $app->register(new AssimpServiceProvider(), array(
     'assimp.bin_path' => '/path/to/assimp'
 ));
+```
 
+Using the service
+
+```php
+use Assimp\Command\Verbs\ListExtensionsVerb;
+
+$verb = new ListExtensionsVerb();
+$app['assimp']->execute($verb);
+print_r($verb);
 ```
 
 ##License
