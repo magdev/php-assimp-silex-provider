@@ -1,0 +1,26 @@
+{
+    "minimum-stability": "dev",
+    "name": "magdev/php-assimp-silex-provider",
+    "description": "Silex Service-Provider for magdev/php-assimp",
+    "keywords": ["3d", "wrapper", "assimp"],
+    "license": "MIT",
+    "version": "0.0.1@dev",
+    "authors": [
+        {
+            "name": "Marco Graetsch",
+            "email": "magdev3.0@googlemail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Assimp\\": "src/" }
+    },
+    "require": [
+        "magdev/php-assimp": "dev-master"
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:magdev/php-assimp.git"
+        }
+    ]
+}
