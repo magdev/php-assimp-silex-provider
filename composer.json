@@ -14,9 +14,9 @@
     "autoload": {
         "psr-0": { "Assimp\\": "src/" }
     },
-    "require": [
+    "require": {
         "magdev/php-assimp": "dev-master"
-    ],
+    },
     "repositories": [
         {
             "type": "vcs",
