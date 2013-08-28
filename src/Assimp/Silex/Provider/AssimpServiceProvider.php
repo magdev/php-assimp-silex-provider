@@ -36,7 +36,7 @@ use Silex\ServiceProviderInterface;
 use Assimp\Command\CommandExecutor;
 
 /**
- * Silex service provider to integrate Assimp library.
+ * Silex service provider to integrate magdev/php-assimp library.
  *
  * @author magdev
  */
