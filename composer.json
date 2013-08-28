@@ -2,7 +2,7 @@
     "minimum-stability": "dev",
     "name": "magdev/php-assimp-silex-provider",
     "description": "Silex Service-Provider for magdev/php-assimp",
-    "keywords": ["3d", "wrapper", "assimp"],
+    "keywords": ["3d", "converter", "assimp", "silex"],
     "license": "MIT",
     "version": "0.0.1@dev",
     "authors": [
@@ -12,7 +12,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Assimp\\": "src/" }
+        "psr-0": { "Assimp\\Silex": "src/" }
     },
     "require": {
         "magdev/php-assimp": "dev-master"
