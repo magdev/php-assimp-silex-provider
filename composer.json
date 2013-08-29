@@ -1,10 +1,10 @@
 {
-    "minimum-stability": "dev",
     "name": "magdev/php-assimp-silex-provider",
     "description": "Silex Service-Provider for magdev/php-assimp",
     "keywords": ["3d", "converter", "assimp", "silex"],
     "license": "MIT",
     "version": "0.0.1@dev",
+    "type": "library",
     "authors": [
         {
             "name": "Marco Graetsch",
@@ -15,6 +15,8 @@
         "psr-0": { "Assimp\\Silex": "src/" }
     },
     "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "~1.0",
         "magdev/php-assimp": "dev-master"
     },
     "repositories": [
