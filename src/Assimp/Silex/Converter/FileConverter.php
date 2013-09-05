@@ -29,37 +29,54 @@
  */
 
 
-namespace Assimp\Silex\Provider;
+namespace Assimp\Silex\Converter;
 
 use Silex\Application;
-use Silex\ServiceProviderInterface;
-use Assimp\Command\CommandExecutor;
-use Assimp\Silex\Converter\FileConverter;
+use Assimp\Command\Verbs\ExportVerb;
 
 /**
- * Silex service provider to integrate magdev/php-assimp library.
+ * Assimp File Converter
  *
  * @author magdev
  */
-class AssimpServiceProvider implements ServiceProviderInterface
+class FileConverter
 {
-    public function boot(Application $app)
-    {
-    	
-    }
-
-    public function register(Application $app)
-    {
-        if (!isset($app['assimp.bin_path'])) {
-            $app['assimp.bin_path'] = null;
-        }
-
-        $app['assimp'] = $app->share(function(Application $app) {
-            return new CommandExecutor($app['assimp.bin_path']);
-        });
-        
-        $app['assimp.converter'] = $app->share(function(Application $app) {
-        	return new FileConverter($app);
-        });
-    }
+	/** @var \Silex\Application */
+	private $app = null;
+	
+	
+	/**
+	 * Constructor
+	 *
+	 * @param \Silex\Application $app
+	 */
+	public function __construct(Application $app)
+	{
+		$this->app = $app;
+	}
+	
+	
+	/**
+	 * Convert 3D files
+	 *
+	 * @param string $file
+	 * @param string $format
+	 * @param array $parameters
+	 * @return \Assimp\Command\Verbs\ExportVerb
+	 */
+	public function convert($file, $format = 'stl', array $parameters = array())
+	{
+		$outputDir = __DATADIR__.'/magdev';
+		$ext = substr($file, strrpos($file, '.'));
+		$filename = basename($file, $ext).'-converted';
+		$outputFile = $outputDir.'/'.$filename.'.'.$format;
+		
+		$verb = new ExportVerb();
+		$verb->setOutputFile($outputFile)
+			->setFormat($format)
+			->setFile($file)
+			->setParameters($parameters);
+		$this->app['assimp']->execute($verb);
+		return $verb;
+	}
 }
