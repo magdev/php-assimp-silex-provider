@@ -50,11 +50,10 @@ class AssimpServiceProvider implements ServiceProviderInterface
 
     public function register(Application $app)
     {
-        if (!isset($app['assimp.bin_path'])) {
-            $app['assimp.bin_path'] = null;
-        }
-
         $app['assimp'] = $app->share(function(Application $app) {
+	        if (!isset($app['assimp.bin_path'])) {
+	            $app['assimp.bin_path'] = null;
+	        }
             return new CommandExecutor($app['assimp.bin_path']);
         });
         
