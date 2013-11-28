@@ -62,13 +62,16 @@ class FileConverter
 	 * @param string $file
 	 * @param string $format
 	 * @param array $parameters
+	 * @param string $outputDir
 	 * @return \Assimp\Command\Verbs\ExportVerb
 	 */
-	public function convert($file, $format = 'stl', array $parameters = array())
+	public function convert($file, $format = 'stl', array $parameters = array(), $outputDir = null)
 	{
-		$outputDir = __DATADIR__.'/magdev';
-		$ext = substr($file, strrpos($file, '.'));
-		$filename = basename($file, $ext).'-converted';
+		if (is_null($outputDir)) {
+			$outputDir = sys_get_temp_dir();
+		}
+		
+		$filename = basename($file, substr($file, strrpos($file, '.'));
 		$outputFile = $outputDir.'/'.$filename.'.'.$format;
 		
 		$verb = new ExportVerb();
