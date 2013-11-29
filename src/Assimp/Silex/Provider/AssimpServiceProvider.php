@@ -45,20 +45,20 @@ class AssimpServiceProvider implements ServiceProviderInterface
 {
     public function boot(Application $app)
     {
-    	
+        
     }
 
     public function register(Application $app)
     {
         $app['assimp'] = $app->share(function(Application $app) {
-	        if (!isset($app['assimp.bin_path'])) {
-	            $app['assimp.bin_path'] = null;
-	        }
+            if (!isset($app['assimp.bin_path'])) {
+                $app['assimp.bin_path'] = null;
+            }
             return new CommandExecutor($app['assimp.bin_path']);
         });
         
         $app['assimp.converter'] = $app->share(function(Application $app) {
-        	return new FileConverter($app);
+            return new FileConverter($app);
         });
     }
 }

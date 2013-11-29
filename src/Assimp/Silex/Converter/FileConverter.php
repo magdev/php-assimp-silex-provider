@@ -41,45 +41,45 @@ use Assimp\Command\Verbs\ExportVerb;
  */
 class FileConverter
 {
-	/** @var \Silex\Application */
-	private $app = null;
-	
-	
-	/**
-	 * Constructor
-	 *
-	 * @param \Silex\Application $app
-	 */
-	public function __construct(Application $app)
-	{
-		$this->app = $app;
-	}
-	
-	
-	/**
-	 * Convert 3D files
-	 *
-	 * @param string $file
-	 * @param string $format
-	 * @param array $parameters
-	 * @param string $outputDir
-	 * @return \Assimp\Command\Verbs\ExportVerb
-	 */
-	public function convert($file, $format = 'stl', array $parameters = array(), $outputDir = null)
-	{
-		if (is_null($outputDir)) {
-			$outputDir = sys_get_temp_dir();
-		}
-		
-		$filename = basename($file, substr($file, strrpos($file, '.'));
-		$outputFile = $outputDir.'/'.$filename.'.'.$format;
-		
-		$verb = new ExportVerb();
-		$verb->setOutputFile($outputFile)
-			->setFormat($format)
-			->setFile($file)
-			->setParameters($parameters);
-		$this->app['assimp']->execute($verb);
-		return $verb;
-	}
+    /** @var \Silex\Application */
+    private $app = null;
+    
+    
+    /**
+     * Constructor
+     *
+     * @param \Silex\Application $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+    
+    
+    /**
+     * Convert 3D files
+     *
+     * @param string $file
+     * @param string $format
+     * @param array $parameters
+     * @param string $outputDir
+     * @return \Assimp\Command\Verbs\ExportVerb
+     */
+    public function convert($file, $format = 'stl', array $parameters = array(), $outputDir = null)
+    {
+        if (is_null($outputDir)) {
+            $outputDir = sys_get_temp_dir();
+        }
+        
+        $filename = basename($file, substr($file, strrpos($file, '.'));
+        $outputFile = $outputDir.'/'.$filename.'.'.$format;
+        
+        $verb = new ExportVerb();
+        $verb->setOutputFile($outputFile)
+            ->setFormat($format)
+            ->setFile($file)
+            ->setParameters($parameters);
+        $this->app['assimp']->execute($verb);
+        return $verb;
+    }
 }
