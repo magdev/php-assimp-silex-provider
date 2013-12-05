@@ -71,7 +71,7 @@ class FileConverter
             $outputDir = sys_get_temp_dir();
         }
         
-        $filename = basename($file, substr($file, strrpos($file, '.'));
+        $filename = basename($file, substr($file, strrpos($file, '.')));
         $outputFile = $outputDir.'/'.$filename.'.'.$format;
         
         $verb = new ExportVerb();
