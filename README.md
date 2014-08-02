@@ -18,7 +18,7 @@ and until this package is registered at [Packagist](https://packagist.org/) add 
 {
     "repositories" : [{
             "type" : "vcs",
-            "url" : "git@bitbucket.org:magdev/php-assimp-silex-provider.git"
+            "url" : "git@github.com:magdev/php-assimp-silex-provider.git"
         }
     ]
 }
